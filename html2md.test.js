@@ -1,6 +1,5 @@
-import { expect, describe, test } from '@jest/globals';
-import { html2mdConvertContentToMarkdown } from './html2md.user';
-import TurndownService from 'turndown';
+const TurndownService = require('turndown');
+const html2mdConvertContentToMarkdown = require('./html2md.user');
 
 describe('html2mdConvertContentToMarkdown', () => {
     test('if valid html given, it should sanitize and format to markdown', () => {

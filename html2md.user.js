@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         html2md
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  convert html page to markdown and store to clipboard
 // @author       Akira Masuda
 // @match        https://*/**
@@ -13,16 +13,13 @@
 // @require      https://unpkg.com/turndown/dist/turndown.js
 // ==/UserScript==
 'use strict';
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.html2mdConvertContentToMarkdown = void 0;
+
 (function () {
     // will be skipped when running test
     if (typeof window !== 'undefined') {
         console.log(window);
         const mainContent = document.getElementById('content');
         if (mainContent) {
-            // TurndownService is loaded in require so it can be ignored
-            // @ts-ignore
             const turndownService = new TurndownService();
             const markdownContent = html2mdConvertContentToMarkdown(turndownService, mainContent.innerHTML);
             GM_setClipboard(markdownContent, "text");
@@ -33,6 +30,7 @@ exports.html2mdConvertContentToMarkdown = void 0;
         }
     }
 })();
+
 function html2mdConvertContentToMarkdown(turndownService, html) {
     turndownService.remove('script');
     turndownService.remove('style');
@@ -51,5 +49,4 @@ function html2mdConvertContentToMarkdown(turndownService, html) {
     const spaceTrimmedLines = lines.map((line) => line.trimEnd());
     return spaceTrimmedLines.join('\n');
 }
-exports.html2mdConvertContentToMarkdown = html2mdConvertContentToMarkdown;
-//# sourceMappingURL=html2md.user.js.map
+module.exports = html2mdConvertContentToMarkdown;
