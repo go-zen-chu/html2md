@@ -1,2 +1,3 @@
 # html2md
-user script for converting html page to markdown
+
+Tampermonkey user script for converting html page to markdown.
